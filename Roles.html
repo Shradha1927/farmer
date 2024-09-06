@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Market</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital@1&family=Poppins:wght@200;300;400;500;600&family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            
+
+        }
+
+        body {
+            font-family: 'poppins', sans-serif;
+            box-sizing: border-box;
+            color: #ededed;
+
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: #402B3A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        
+        }    
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            position: relative;
+            font-size: 25px;
+            color: #fff;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .nav-links {
+            display:flex;
+            list-style-type: none;
+            font-size: 25px;
+            color: #fff;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            border-bottom: 2px solid cyan;
+            
+        }
+
+        /* Carousel */
+        .carousel {
+            padding-top:7px ;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+        
+        }
+
+        .slides {
+            display: flex;
+            animation: slideAnimation 15s infinite;
+        }
+
+        .slide {
+            min-width: 100%;
+            transition: 0.6s;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        @keyframes slideAnimation {
+            0% { transform: translateX(0%); }
+            20% { transform: translateX(0%); }
+            25% { transform: translateX(-100%); }
+            45% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            70% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            95% { transform: translateX(-300%); }
+            100% { transform: translateX(-400%); }
+        }
+        
+        /* About Us Section */
+        .about-section {
+            padding: 50px 20px;
+            background-color: black;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-content img {
+            width: 300px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 10px;
+            
+            position: relative;
+            border: 5px solid cyan;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        /* Roles Section */
+        .roles-section {
+            padding: 50px 20px;
+            background-color: #000;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .roles-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .roles-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .role-box {
+            width: 250px;
+            padding: 20px;
+            background-color: black;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .role-box h3 {
+            font-size: 25px;
+            margin-bottom: 10px;
+            color:white ;
+        }
+
+        .role-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #538392;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .role-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .role-box a:hover {
+            box-shadow: 0 0 20px cyan;
+        }
+
+        .farmer {
+            background-image: url('images\slide10.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .wholesaler {
+            background-image: url('images\slide6.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .retailer {
+            background-image: url('images\slide5.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        /* Footer Styles */
+        footer {
+            padding: 20px 0;
+            background-color: #000;
+            text-align: center;
+            color: #fff;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+        .social-icons a:hover{
+            box-shadow: 0 0 20px cyan;
+        }
+
+        footer p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+         /* Back to Top  */
+         #back-to-top {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100; 
+            border: none;
+            outline: none;
+            background-color:#538392;
+            color: black;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 20%;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navbar -->
+    <header>
+    
+        <nav class="navbar">
+            <div class="logo">Kisan Market</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#roles">Roles</a></li>
+                <li><a href="index.html">Login</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <!-- Image Carousel -->
+    <section id="home" class="carousel">
+        <div class="slides">
+            <div class="slide"><img src="images\slide11.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="images\new2.jpg" alt="Slide 2"></div>
+            <div class="slide"><img src="images\e.jpg" alt="Slide 3"></div>
+            <div class="slide"><img src="images\new1.jpg" alt="Slide 4"></div>
+            
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-us" class="about-section">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <img src="images\slide7.jpg" alt="About Us Image">
+            <p>Welcome to Kisan Market – Your Trusted Agricultural Marketplace. We are dedicated to empowering farmers, wholesalers, and retailers by providing a reliable online platform that facilitates secure and transparent agricultural trade. Our mission is to connect farmers directly with buyers, offering tools for efficient crop management, contract handling, and timely payments, all in a user-friendly interface...</p>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section id="roles" class="roles-section">
+        <h2>Our Roles</h2>
+        <div class="roles-container">
+            <div class="role-box farmer">
+                <img src="">
+                <h3>Farmer</h3>
+                <a href="farmer.html">Explore</a>
+            </div>
+            <div class="role-box wholesaler">
+                <img src="">
+                <h3>Wholesaler</h3>
+                <a href="wholesaler.html">Explore</a>
+            </div>
+            <div class="role-box retailer">
+                <img src="">
+                <h3>Retailer</h3>
+                <a href="retailer.html">Explore</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2024 Kisan Market. All rights reserved.</p>
+
+        <button id="back-to-top" title="Go to top">&uarr;</button>
+
+
+
+    </footer>
+
+    <script>
+
+
+        
+        window.onscroll = function() {
+            scrollFunction();
+        };
+    
+        function scrollFunction() {
+            var backToTopButton = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+    
+
+        document.getElementById("back-to-top").addEventListener("click", function() {
+            document.body.scrollTop = 0; 
+            document.documentElement.scrollTop = 0; 
+        });
+    </script>
+</body>
+</html>

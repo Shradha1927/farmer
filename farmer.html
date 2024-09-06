@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Market - Farmer Interface</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital@1&family=Poppins:wght@200;300;400;500;600&family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'poppins', sans-serif;
+            background-color:black;
+        }
+        
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 65px;
+            background: #402B3A;
+            padding: 10px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            border-bottom: 2px solid cyan;
+           
+        }
+
+        .hero-section img{
+            width:100%;
+            height:500px;
+            background-position: cover;
+
+        }
+        .hindi{
+            color:aqua;
+            z-index: 1000;
+
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            background-image: url('images/farmer1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .hero-section p.hindi {
+            font-size: 1.5rem;
+            z-index: 1;
+            color: aqua;
+            max-width: 80%;
+            margin-bottom: 500px;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            text-align: center;
+            
+        }
+        
+
+        .content-section {
+            padding: 50px 20px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            color:white;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .crops-section,
+        .payment-section,
+        .contract-section {
+            background-color:black;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        .h2{
+            color: white;
+        }
+        .h2 span{
+            color: cyan;
+        }
+
+        .crop-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .crop-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 10px;
+        }
+        .crop-card:hover{
+            transform: translateY(-10px);
+
+        }
+
+        .crop-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .crop-card h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .crop-card p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .crop-card button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .crop-card button {
+            background-color: #000;
+            color:cyan
+        }
+
+        
+
+        .add-crop-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #402B3A;
+            color: white;
+            border: none;
+            border-radius: 90%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            
+        }
+        .add-crop-btn:hover{
+            transform: translateY(-10px);
+            box-shadow:  0 0 20px cyan;
+        }
+        #payment{
+            background: #fff;
+            padding-bottom: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        #payment h2{
+            font-size: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+
+        }
+        #contract{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        #contract h2{
+            font-size: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+
+        }
+
+        .footer {
+            background-color: #402B3A;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .footer .social-icons {
+            margin-bottom: 10px;
+        }
+
+        .footer .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        
+
+        .footer p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color:#402B3A;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1000;
+        }
+        #back-to-top:hover{
+            box-shadow:  0 0 20px cyan;
+            
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .crop-card {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .crop-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Kisan Market</div>
+        <ul>
+            <li><a href="Roles.html">Home</a></li>
+            <li><a href="#crops">Crops</a></li>
+            <li><a href="#payment">Payment</a></li>
+            <li><a href="#contract">Contract</a></li>
+        </ul>
+    </div>
+
+    <section class="hero-section">
+        <img src="">
+        <h1>धरती के सच्चे सपूतों को सलाम</h1>
+        <p class="hindi">आपकी मेहनत और समर्पण ने ही हर एक निवाला संभव बनाया है। 
+            <br> कृतज्ञता के साथ, हम आपके हर कदम पर साथ हैं।</p>
+    </section>
+
+    <section class="content-section crops-section" id="crops">
+        <h2>Our <span>Crops</span></h2>
+        <div class="crop-cards">
+            <!-- Crop Card Examples -->
+            <div class="crop-card">
+                <img src="images\wheat.jpg" alt="Crop 1">
+                <h3>Wheat</h3>
+                <p>Price: ₹50/kg | Market Price: ₹55/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\rice.jpg" alt="Crop 2">
+                <h3>Rice</h3>
+                <p>Price: ₹40/kg | Market Price: ₹45/kg</p>
+                <button>View Details</button>
+            </div>
+            <!-- Add 13 more crop cards here with similar structure -->
+            <div class="crop-card">
+                <img src="images\corn.jpg" alt="Crop 3">
+                <h3>Corn</h3>
+                <p>Price: ₹60/kg | Market Price: ₹65/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\soybean.jpg" alt="Crop 4">
+                <h3>Soybean</h3>
+                <p>Price: ₹80/kg | Market Price: ₹85/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\tomato.jpg" alt="Crop 5">
+                <h3>Tomato</h3>
+                <p>Price: ₹30/kg | Market Price: ₹35/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\potato.jpg" alt="Crop 6">
+                <h3>Potato</h3>
+                <p>Price: ₹25/kg | Market Price: ₹28/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\onion.jpg" alt="Crop 7">
+                <h3>Onion</h3>
+                <p>Price: ₹40/kg | Market Price: ₹42/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\chilies.jpg" alt="Crop 8">
+                <h3>Chili</h3>
+                <p>Price: ₹70/kg | Market Price: ₹75/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\peas.jpg" alt="Crop 9">
+                <h3>Peas</h3>
+                <p>Price: ₹60/kg | Market Price: ₹65/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\mango.jpg" alt="Crop 10">
+                <h3>Mango</h3>
+                <p>Price: ₹150/kg | Market Price: ₹160/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\oranges.jpg" alt="Crop 11">
+                <h3>Oranges</h3>
+                <p>Price: ₹50/dozen | Market Price: ₹55/dozen</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\spinach.jpg" alt="Crop 12">
+                <h3>Spinach</h3>
+                <p>Price: ₹40/kg | Market Price: ₹45/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\cotton.jpg" alt="Crop 13">
+                <h3>Cotton</h3>
+                <p>Price: ₹30/kg | Market Price: ₹35/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\rajma.jpg" alt="Crop 14">
+                <h3>Rajma</h3>
+                <p>Price: ₹40/kg | Market Price: ₹45/kg</p>
+                <button>View Details</button>
+            </div>
+            <div class="crop-card">
+                <img src="images\barley2.jpg" alt="Crop 15">
+                <h3>Barley</h3>
+                <p>Price: ₹20/kg | Market Price: ₹25/kg</p>
+                <button><a href="wholesaler.html">View Details</a></button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="content-section-payment-section" id="payment">
+        <h2>Payment Options</h2>
+        <p>Here you can add details about payment methods and instructions for farmers.</p>
+    </section>
+
+    <section class="content-section-contract-section" id="contract">
+        <h2>Contract Details</h2>
+        <p>Here you can provide information about contracts and agreements related to crop sales.</p>
+    </section>
+
+    <a href="addingcrops.html">
+        <button class="add-crop-btn">+</button>
+    </a>
+    
+
+    <div class="footer">
+        <div class="social-icons">
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2024 Kisan Market. All rights reserved.</p>
+    </div>
+
+    <button id="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        // Show back-to-top button when scrolling
+        window.addEventListener('scroll', function() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (window.scrollY > 200) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        <button class="add-crop-btn" onclick="window.location.href='addingcrops.html';">+</button>
+
+
+        // Scroll back to top
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>

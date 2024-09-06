@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan market</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital@1&family=Poppins:wght@200;300;400;500;600&family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    background-image: url('images/Back.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:99;
+
+}
+.logo {
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 40px;
+    font-size: xx-large;
+    color: white;
+}
+.navigation .btnLogin-popup{
+    width: 150px;
+    height: 60px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 8px ;
+    cursor: pointer;
+    font-size: 15px;
+    color: aqua;
+    font-weight: 700;
+    margin-left: 40px;
+    transition: .5s;
+}
+.navigation .btnLogin-popup:hover{
+    background: white;
+    color: gray;
+
+}
+.about-img {
+    padding-bottom: 20%;
+    max-width: 630px;
+    height: auto;
+    width:95%;
+    border-radius: 8px;
+
+}
+
+select {
+    margin: 10px;
+    padding: 5px;
+}
+
+button {
+    background-color:transparent;
+    color: white;
+    padding: 10px 15px;
+    font-size: xx-large;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color:transparent;
+    border: 2px white solid;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440;
+    background: transparent;
+    border: 2px solid wheat;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden ;
+    transition: height .2s ease;
+    
+
+    
+}
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+
+}
+.wrapper.active {
+    height: 520px;
+
+}
+
+.wrapper .form-box .login{
+    display: none;
+    transition: transform .18s ease;
+    transform: translateX(0);
+} 
+
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+
+}
+.wrapper .form-box.register {
+    position: absolute;
+    transform: translateX(400px);
+    transition: none;
+
+}
+.wrapper.active .form-box.register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+} 
+
+
+.form-box h2{
+    font-size: 2em;
+    color: black;
+    text-align: center;
+
+}
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin: 30px 0;
+}
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: black;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top:-5px;
+
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #000;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+
+}
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #000;
+    line-height: 57px;
+
+
+}
+.remember-forgot {
+    font-size: .9em;
+    color: #000;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.remember-forgot label input {
+    accent-color: green;
+    margin-right: 3px;
+
+}
+.remember-forgot a {
+    color: #000;
+    text-decoration: none;
+
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+
+}
+.btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+
+}
+.login-register {
+    font-size: 0.9em;
+    color: #000;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+.login-register p a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+.login-register p a:hover{
+    text-decoration: underline;
+
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chatbot {
+        width: 90%;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        
+        <h2 class="logo">Kisan market</h2>
+        
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="Password" required>
+                    <label>Password</label>
+
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="Submit" class="btn"><a href="Roles.html">Login</a></button>
+                <div class="login-register">
+                    <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="form-box register">
+            <h2>Registration</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Username</label>
+
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="Password" required>
+                    <label>Password</label>
+
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">I agree to Terms and Conditions</label>
+                </div>
+                <button type="Submit" class="btn"><a href="Roles.html">Register</a></button>
+                <div class="login-register">
+                    <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+    
+
+    <script src="script.js">
+        const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+
+registerLink.addEventListener('click',()=> {
+    wrapper.classList.add('active');
+})
+
+
+loginLink.addEventListener('click',()=> {
+    wrapper.classList.remove('active');
+})
+
+function redirectTo(role) {
+    if (role === 'farmer') {
+        window.location.href = 'farmer.html';
+    } else if (role === 'wholesaler') {
+        window.location.href = 'wholesaler.html';
+    } else if (role === 'retailer') {
+        window.location.href = 'retailer.html';
+    }
+}
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

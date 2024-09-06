@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Crop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital@1&family=Poppins:wght@200;300;400;500;600&family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'poppins', sans-serif;
+            background-image: url('images/role.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #402B3A;
+            padding: 10px;
+        }
+
+        .logo  {
+            width: 100px;
+            color:#fff;
+            font-weight: 700;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar ul li a:hover{
+            border-bottom: 2px solid cyan;
+        }
+
+        /* Form container */
+        .container {
+            max-width: 500px;
+            margin: 50px auto; 
+            background: transparent;
+            border: 2px solid wheat;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0,0,0,.5);
+            transition: height .2s ease;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        input, select {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input:hover, select:hover {
+            border-color: #28a745;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Form fields alignment */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div>
+            <div class="logo">Kisan Market</div>
+        </div>
+        <ul>
+            <li><a href="farmer.html"> farmers </a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Crop Adding Form -->
+    <div class="container">
+        <h2>Add Crop</h2>
+        <form action="connect.php" method="post" 
+            id="cropForm">
+            <div class="form-group">
+                <label for="farmername">Farmer Name:</label>
+                <input type="text" 
+                id="farmername" 
+                name="farmername" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" 
+                id="location" 
+                class="form-group"
+                name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cropname">Crop Name:</label>
+                <input type="text" 
+                    id="cropname" 
+                    name="cropname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quality">Quality:</label>
+                <select id="quality" name="quality">
+                    <option value="A">Grade A</option>
+                    <option value="B">Grade B</option>
+                    <option value="C">Grade C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity (in Kg):</label>
+                <input type="number" 
+                id="quantity" 
+                name="quantity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cropimage">Add Crop Image:</label>
+                <input type="file" id="cropimage" name="cropimage" accept="image/*">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('cropForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Collect form data
+            const farmerName = document.getElementById('farmer-name').value;
+            const location = document.getElementById('location').value;
+            const cropName = document.getElementById('crop-name').value;
+            const quality = document.getElementById('quality').value;
+            const quantity = document.getElementById('quantity').value;
+            const cropImage = document.getElementById('crop-image').files[0];
+
+            // Display form data in the console (this is where you would send data to the server)
+            console.log({
+                farmerName,
+                location,
+                cropName,
+                quality,
+                quantity,
+                cropImage
+            });
+
+            // Clear the form after submission
+            document.getElementById('cropForm').reset();
+
+            alert('Crop added successfully!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retailer Interface - Kisan Market</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital@1&family=Poppins:wght@200;300;400;500;600&family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'poppins', sans-serif;
+            box-sizing: border-box;
+            background-color:black;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: #402B3A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        
+        }
+
+        .navbar {
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            position: relative;
+            font-size: 25px;
+            color: #fff;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 19px;
+            padding: 5px 10px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            border-bottom: 2px solid cyan;
+        }
+
+        /* Centered Search Bar */
+        .search-bar-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items:center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+            width: 300px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: none;
+            color: #fff;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .search-bar i {
+            color: #fff;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .main-content {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .a{
+            color: cyan;
+        }
+
+
+        /* Crop Details  */
+        .section-title{
+            color:white;
+            text-align: center;
+            font-size: 50px;
+        }
+        .crop-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .crop-card {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .crop-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .crop-card h3 {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        .crop-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .crop-card .price-per-kg {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .crop-card .negotiate-price {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: black;
+            color: cyan;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .crop-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .crop-card .negotiate-price:hover {
+            box-shadow: 0 0 20px cyan;
+        }
+
+        /* Contract Section */
+        .contract-section {
+            margin-bottom: 40px;
+        }
+
+        .section-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .contract-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .contract-options input[type="file"] {
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 48%;
+        }
+
+        .contract-options button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contract-options button:hover {
+            background-color: #555;
+        }
+
+        /* Transportation and Labor Services Section */
+        .services-section {
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        .service-details {
+            flex: 1;
+        }
+
+        .service-details h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .service-details p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            margin-bottom: 40px;
+        }
+
+        /* Footer Styles */
+        footer {
+            padding: 20px 0;
+            background-color: #333;
+            text-align: center;
+            color: #fff;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        footer p {
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 90%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #555;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- Header- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Kisan Market</div>
+            <ul class="nav-links">
+                <li><a href="Roles.html">Home</a></li>
+                <li><a href="#contract">Contract</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#payment">Payment</a></li>
+            </ul>
+            <div class="search-bar-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div class="main-content">
+        <!-- About Us Section -->
+        <section id="about-us">
+            <h2 class="section-title">About<span class="a">Us</span></h2>
+            <div class="section-content">
+                <img src="images\about_us.jpg" alt="About Us" style="width:100%; max-height: 300px; object-fit: cover; border-radius: 10px;">
+                <p>Welcome to <b>Kisan Market</b>, where we connect farmers with retailers to create a more efficient and transparent agricultural market. Our platform offers tools for contract management, price negotiation, and secure payment processing, ensuring a reliable market for crops and reducing market risks.</p>
+            </div>
+        </section>
+
+        <!-- Crop Details Section -->
+        <section id="crops">
+            <h2 class="section-title">Available <span class="a">Crops</span></h2>
+            <div class="crop-details">
+                <div class="crop-card">
+                    <img src="images\wheat.jpg" alt="Wheat">
+                    <h3>Wheat</h3>
+                    <p>Farmer: Rajesh Kumar</p>
+                    <p>Phone: +91-9876543210</p>
+                    <p>Location: Punjab</p>
+                    <p class="price-per-kg">Price: ₹32/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\rice.jpg" alt="Rice">
+                    <h3>Rice</h3>
+                    <p>Farmer: Anil Sharma</p>
+                    <p>Phone: +91-8765432109</p>
+                    <p>Location: Haryana</p>
+                    <p class="price-per-kg">Price: ₹45/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\sugarcane.jpg" alt="Sugarcane">
+                    <h3>Sugarcane</h3>
+                    <p>Farmer: Suresh Patel</p>
+                    <p>Phone: +91-7654321098</p>
+                    <p>Location: Uttar Pradesh</p>
+                    <p class="price-per-kg">Price: ₹40/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\maize.jpg" alt="Maize">
+                    <h3>Maize</h3>
+                    <p>Farmer: Priya Gupta</p>
+                    <p>Phone: +91-1234567890</p>
+                    <p>Location: Madhya Pradesh</p>
+                    <p class="price-per-kg">Price: ₹25/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\barley.jpg" alt="Barley">
+                    <h3>Barley</h3>
+                    <p>Farmer: Sunil Verma</p>
+                    <p>Phone: +91-2345678901</p>
+                    <p>Location: Rajasthan</p>
+                    <p class="price-per-kg">Price: ₹35/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\cotton.jpg" alt="Cotton">
+                    <h3>Cotton</h3>
+                    <p>Farmer: Aarti Mehta</p>
+                    <p>Phone: +91-3456789012</p>
+                    <p>Location: Gujarat</p>
+                    <p class="price-per-kg">Price: ₹50/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\soybean.jpg" alt="Soybean">
+                    <h3>Soybean</h3>
+                    <p>Farmer: Amit Patel</p>
+                    <p>Phone: +91-4567890123</p>
+                    <p>Location: Bihar</p>
+                    <p class="price-per-kg">Price: ₹28/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\lentils.jpg" alt="Lentils">
+                    <h3>Lentils</h3>
+                    <p>Farmer: Meena Saini</p>
+                    <p>Phone: +91-5678901234</p>
+                    <p>Location: Uttarakhand</p>
+                    <p class="price-per-kg">Price: ₹32/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+
+                <div class="crop-card">
+                    <img src="images\apples.jpg" alt="Apples">
+                    <h3>Apples</h3>
+                    <p>Farmer: Naman Chawala </p>
+                    <p>Phone: +91-9811411260</p>
+                    <p>Location: Punjab</p>
+                    <p class="price-per-kg">Price: ₹50/kg</p>
+                    <button class="negotiate-price">Negotiate Price</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contract Section -->
+        <section id="contract">
+            <h2 class="section-title">Create <span class="a">Contract</span></h2>
+            <div class="section-content">
+                <h3>Select an option:</h3>
+                <div class="contract-options">
+                    <input type="file" id="uploadContract" name="uploadContract">
+                    <button onclick="location.href='https://chat.openai.com/'">Create Using AI</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transportation and Labor Services Section -->
+        <section id="services">
+            <h2 class="section-title">Transportation and Labor Services</h2>
+            <div class="services-section">
+                <div class="service-card">
+                    <i class="fas fa-truck"></i>
+                    <div class="service-details">
+                        <h4>Driver: Ramesh Yadav</h4>
+                        <p>Phone: +91-0011859632</p>
+                        <p>Extra Charges: ₹1000</p>
+                        <p>Location: Maharashtra</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-hammer"></i>
+                    <div class="service-details">
+                        <h4>Labor: Suraj Prasad</h4>
+                        <p>Phone: +91-8957412563</p>
+                        <p>Extra Charges: ₹500</p>
+                        <p>Location: Gujarat</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment">
+            <h2 class="section-title">Payment</h2>
+            <div class="section-content">
+                <p>Available payment methods: UPI, Net Banking, Credit/Debit Card, etc.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">&uarr;</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2024 Kisan Market. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Back to Top Button Functionality
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
+    </script>
+</body>
+</html>
